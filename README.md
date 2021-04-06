@@ -37,6 +37,13 @@ The environment is considered solved, when the average (over 100 episodes) of th
 
 2. Place the file in the DRLND GitHub repository, in the `p3_collab-compet/` folder, and unzip (or decompress) the file. 
 
+To download the required dependencies to set up the python environment, follow the instructions present [here](https://github.com/udacity/deep-reinforcement-learning#dependencies)
+
 ### Instructions
 
-Follow the instructions in `Tennis.ipynb` to get started with training your own agent! 
+- Follow the instructions in `Tennis.ipynb` to get started with training your own agent! 
+
+- Follow the instructions in `Continuous_Control.ipynb` to get started with training your own agent!  
+- `model.py` contains the architecture used to solve this problem.
+- `ddpg_agent.py` contains the agent class which has functions relating to how the agent interacts and learns from the environment, and also the noise class.
+- `maddpg_agent.py` manages the agents and contains the replay buffer.
