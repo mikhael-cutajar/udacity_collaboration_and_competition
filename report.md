@@ -6,17 +6,18 @@
 
 In this project, a model using MADDPG was trained to solve the [Tennis](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Examples.md#tennis) environment.
 
-In this environment, a double-jointed arm can move to target locations. A reward of +0.1 is provided for each step that the agent's hand is in the goal location. Thus, the goal of the agent is to maintain its position at the target location for as many time steps as possible.
+In this environment, two agents control rackets to bounce a ball over a net. If an agent hits the ball over the net, it receives a reward of +0.1.  If an agent lets a ball hit the ground or hits the ball out of bounds, it receives a reward of -0.01.  Thus, the goal of each agent is to keep the ball in play.
 
-The observation space consists of 33 variables corresponding to position, rotation, velocity, and angular velocities of the arm. Each action is a vector with four numbers, corresponding to torque applicable to two joints. Every entry in the action vector should be a number between -1 and 1. In this implementation we will be working with 20 arm agents.
+The observation space consists of 8 variables corresponding to the position and velocity of the ball and racket. Each agent receives its own, local observation.  Two continuous actions are available, corresponding to movement toward (or away from) the net, and jumping. 
 
+The environment is considered solved, when the average (over 100 episodes) of those scores is at least +0.5.
 
 ## The code
 
 The code was implemented by adjusting [Udacity's ddpg pendulum implementation](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-pendulum) to work for two collaborating agents.
 
 The process occurs as following:
-At each episode:
+- At each episode:
   - we firstly reset the agents and their scores.
   - while the episode has not terminated:
     - The agents perform an action givin the state they are in with regards to the current policy.
