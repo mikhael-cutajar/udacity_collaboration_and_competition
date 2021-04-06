@@ -78,7 +78,6 @@ class DDPG_Agent():
         self.noise = OUNoise(action_size, random_seed)
         self.timesteps = 0
     
-#     revisit this
     def hard_update(self,target,source):
         """Hard update model parameters.
         θ_target = θ_local
