@@ -44,9 +44,7 @@ GAMMA = 0.99            # Discount Factor
 
 ### Training
 
-Below shows the score and average score the agent achieved every 50 episodes. The increasing score value indicates the agent is learning about the environment and adapting their actions to maximise their score. This learning is achieved using the actor critic method of DDPG which learns both a q value function and a policy. This means that similar to a deep q network it uses a replay buffer. DDPG also makes use of soft updating the weights throughout the training process instead of hard updates at certain intervals. In the case maddpg, since the agents are collaborating together we use additional techniques from normal ddpg which include the use of a shared replay buffer and also a shared critic.
-
-The process took 1282 episodes running on the udacity workspace with GPU enabled to achieve an average score of 0.5162.
+Below shows the score and average score the agent achieved every 50 episodes. The increasing score value indicates the agent is learning about the environment and adapting their actions to maximise their score. The process took 1282 episodes running on the udacity workspace with GPU enabled to achieve an average score of 0.5162.
 
 ```
 Episode 50	Average Score: 0.0080
@@ -81,6 +79,6 @@ Episode 1282	Average Score: 0.5162
 
 ### Future Work
 
-Possible future work could including: 
+Possible future work could include: 
 - Experiment with how training changes with priority experience replay
 - Adjust the model with techniques such as dropout and see how that affects learning
