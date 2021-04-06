@@ -1,4 +1,3 @@
-
 [//]: # (Image References)
 
 
@@ -28,56 +27,59 @@ At each episode:
 
 ### Model Architecture
 
-The DDPG model architecture implemented used we two hidden layers with 256 units on both hidden layers. As opposed to the Udacity pendulum implementation we used batch normalisation on the critic. 
+The model architecture implemented used we two hidden layers with 512 units on the first hidden layer and 256 units on the second hidden layer. This was the same for both the actor and the critic. As opposed to the Udacity pendulum implementation we used batch normalisation on the critic. 
 
 ### Hyperparameters
 
-The hyperparameters are identical to the Udacity pendulum implementation as they worked well.
-
 ```
-BUFFER_SIZE = int(1e5)  # replay buffer size
-BATCH_SIZE = 128        # minibatch size
-GAMMA = 0.99            # discount factor
-TAU = 1e-3              # for soft update of target parameters
-LR_ACTOR = 1e-4         # learning rate of the actor 
-LR_CRITIC = 1e-3        # learning rate of the critic
+BUFFER_SIZE = int(1e6)  # Replay buffer size
+BATCH_SIZE = 256        # Batch size for training models
+LR_ACTOR = 1e-4         # Learning rate of the actor 
+LR_CRITIC = 1e-3        # Learning rate of the critic
 WEIGHT_DECAY = 0        # L2 weight decay
+TAU = 8e-2              # For soft update of target parameters
+GAMMA = 0.99            # Discount Factor
 ```
 
 ### Training
 
-Below shows the score and average score the agent achieved every 10 episodes. The increasing score value indicates the agent is learning about the environment and adapting their actions to maximise their score. This learning is achieved using the actor critic method of DDPG which learns both a q value function and a policy. This means that similar to a deep q network it uses a replay buffer. DDPG also makes use of soft updating the weights throughout the training process instead of hard updates at certain intervals.
+Below shows the score and average score the agent achieved every 50 episodes. The increasing score value indicates the agent is learning about the environment and adapting their actions to maximise their score. This learning is achieved using the actor critic method of DDPG which learns both a q value function and a policy. This means that similar to a deep q network it uses a replay buffer. DDPG also makes use of soft updating the weights throughout the training process instead of hard updates at certain intervals. In the case maddpg, since the agents are collaborating together we use additional techniques from normal ddpg which include the use of a shared replay buffer and also a shared critic.
 
-The process took 161 episodes running on the udacity workspace with GPU enabled to achieve an average score of 30.13.
-
-At first the model was refusing to learn never surpassing a score of 10 after several episodes, however the changes to the model architecture and the increase to max_t was sufficient to help the model beat the game.
+The process took 1282 episodes running on the udacity workspace with GPU enabled to achieve an average score of 0.5162.
 
 ```
-Episode 10	Score: 0.75	Average Score: 0.41
-Episode 20	Score: 0.76	Average Score: 0.59
-Episode 30	Score: 2.89	Average Score: 1.17
-Episode 40	Score: 3.47	Average Score: 1.72
-Episode 50	Score: 5.23	Average Score: 2.36
-Episode 60	Score: 9.20	Average Score: 3.265
-Episode 70	Score: 8.56	Average Score: 3.27
-Episode 80	Score: 25.05	Average Score: 5.18
-Episode 90	Score: 36.15	Average Score: 8.06
-Episode 100	Score: 37.04	Average Score: 10.84
-Episode 110	Score: 35.11	Average Score: 14.42
-Episode 120	Score: 34.98	Average Score: 17.85
-Episode 130	Score: 32.30	Average Score: 20.91
-Episode 140	Score: 36.82	Average Score: 24.13
-Episode 150	Score: 35.20	Average Score: 27.16
-Episode 160	Score: 34.04	Average Score: 29.85
-Episode 161	Score: 35.71	Average Score: 30.13
-
-Environment solved!
+Episode 50	Average Score: 0.0080
+Episode 100	Average Score: 0.0308
+Episode 150	Average Score: 0.0552
+Episode 200	Average Score: 0.0578
+Episode 250	Average Score: 0.0694
+Episode 300	Average Score: 0.1253
+Episode 350	Average Score: 0.1905
+Episode 400	Average Score: 0.2318
+Episode 450	Average Score: 0.2229
+Episode 500	Average Score: 0.1570
+Episode 550	Average Score: 0.1124
+Episode 600	Average Score: 0.0965
+Episode 650	Average Score: 0.0977
+Episode 700	Average Score: 0.1066
+Episode 750	Average Score: 0.1255
+Episode 800	Average Score: 0.1765
+Episode 850	Average Score: 0.2192
+Episode 900	Average Score: 0.2250
+Episode 950	Average Score: 0.2100
+Episode 1000	Average Score: 0.1977
+Episode 1050	Average Score: 0.1838
+Episode 1100	Average Score: 0.1777
+Episode 1150	Average Score: 0.1725
+Episode 1200	Average Score: 0.1990
+Episode 1250	Average Score: 0.2668
+Episode 1282	Average Score: 0.5162
 ```
 
-![Screenshot 2021-03-24 at 12 53 49](https://user-images.githubusercontent.com/74315440/112306329-fd29dd00-8c9f-11eb-81c7-5ab886e66298.png)
+![Screenshot 2021-04-06 at 12 03 57](https://user-images.githubusercontent.com/74315440/113694524-2d29a500-96d0-11eb-896e-60deda29d508.png)
 
 ### Future Work
 
 Possible future work could including: 
-- Trying out the D4PG model and comparing the results
-- Experiment with how learning changes when using even more agents
+- Experiment with how training changes with priority experience replay
+- Adjust the model with techniques such as dropout and see how that affects learning
