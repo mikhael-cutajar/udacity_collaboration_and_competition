@@ -153,7 +153,6 @@ class DDPG_Agent():
         self.actor_optimizer.step()
 
         # ----------------------- update target networks ----------------------- #
-#         if self.timesteps % 4 == 0:
         self.soft_update(self.critic_local, self.critic_target, TAU)
         self.soft_update(self.actor_local, self.actor_target, TAU)
             
