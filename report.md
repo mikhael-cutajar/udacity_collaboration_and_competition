@@ -17,12 +17,12 @@ The code was implemented by adjusting [Udacity's ddpg pendulum implementation](h
 
 The process occurs as following:
 At each episode:
-  we firstly reset the agents and their scores.
-  while the episode has not terminated:
-    The agents perform an action givin the state they are in with regards to the current policy.
-    The next state for each agent is then discovered and rewards are assigned.
-    experience is saved in replay memory
-    When enough experiences have been acquired, the actor and critic weights start being adjusted to reflect the information from the experience tuples.
+  - we firstly reset the agents and their scores.
+  - while the episode has not terminated:
+    - The agents perform an action givin the state they are in with regards to the current policy.
+    - The next state for each agent is then discovered and rewards are assigned.
+    - experience is saved in replay memory
+    - When enough experiences have been acquired, the actor and critic weights start being adjusted to reflect the information from the experience tuples.
 
 
 ### Model Architecture
